@@ -1,0 +1,7 @@
+src/.vs/
+
+src/mdp/obj/
+src/mdp/bin/
+
+src/mdp.Tests/obj/
+src/mdp.Tests/bin/
