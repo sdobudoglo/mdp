@@ -5,3 +5,5 @@ src/mdp/bin/
 
 src/mdp.Tests/obj/
 src/mdp.Tests/bin/
+
+src/mdp/mdp.csproj.user
