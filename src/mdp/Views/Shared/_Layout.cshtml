@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -18,15 +19,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Магазин робототехники", "Index", "Help", new { area = "HelpPage" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    <li>@Html.ActionLink("Каталог товаров", "Index", "Help", new { area = "HelpPage" }, null)</li>
+
+                    <li>@Html.ActionLink("Информация", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    <li>@Html.ActionLink("Доставка", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    <li>@Html.ActionLink("Новости", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                    Б
+
+                    <li>
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                        </form>
+                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+            @Html.Partial("_LoginPartial")
+        </div>
         </div>
     </div>
     <div class="container body-content">
@@ -34,8 +46,20 @@
         @RenderSection("SPAViews", required: false)
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
+          <div class="opis">
+              <h4><b>О магазине:</b></h4>
+              <p>
+                  Роботы, конструкторы, наборы, запчасти и комплектующие для самостоятельной сборки роботов, компоненты для робототехники, мехатроники, занимательная электроника и электроника для умного дома на базе микроконтроллеров Arduino (Ардуино) и Raspberry (Малина), Orange Pi - это основное направление нашего интернет магазина. Здесь вы можете купить как готового робота, так и собрать самостоятельно из предложенных компонентов и запасных частей Pololu, DFRobot, Seeed Studio, Gekko, Feetech, Tamiya.
+
+                  Здесь Вы найдете все для робототехники: контроллеры -роботов, -двигателей, -серво; драйверы моторов; разные датчики и сенсоры; мотор-редукторы и сервоприводы; шасси и платформы; колеса и шаровые опоры; брекеты и крепежные элементы; и многое другое.
+              </p>
+              <h4><b>Связь с нами:</b></h4>
+              <h5><b>Телефоны:</b></h5>
+              <p><b>+79788972950</b> - телефон нашего магазина</p>
+              <p><b>+79385344830</b> - телефон доставки</p>
+              <p>Ваши вопросы вы можете задать отправив письмо на эту почту: <b>dobudoglo.maxim@gmail.com</b></p>
+          </div>
+</footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

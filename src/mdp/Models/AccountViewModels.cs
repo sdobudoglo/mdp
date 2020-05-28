@@ -80,6 +80,11 @@ namespace mdp.Models
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
+        [Required]
+        [Phone]
+        [Display(Name = "Номер телефона")]
+        public string Number { get; set; }
+
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
