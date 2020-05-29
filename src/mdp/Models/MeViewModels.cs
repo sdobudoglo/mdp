@@ -7,6 +7,6 @@ namespace mdp.Models
     // Модели, возвращенные действиями MeController.
     public class GetViewModel
     {
-        public string Hometown { get; set; }
+        public string Address { get; set; }
     }
 }

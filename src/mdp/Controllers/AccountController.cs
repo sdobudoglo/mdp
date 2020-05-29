@@ -163,8 +163,8 @@ namespace mdp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
-                var user1 = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown, PhoneNumber = model.Number };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address };
+                var user1 = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, PhoneNumber = model.Number };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -380,7 +380,7 @@ namespace mdp.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

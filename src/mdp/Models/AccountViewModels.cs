@@ -11,8 +11,8 @@ namespace mdp.Models
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
 
-        [Display(Name = "Место рождения")]
-        public string Hometown { get; set; }
+        [Display(Name = "Адрес пользователя")]
+        public string Address { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -90,8 +90,8 @@ namespace mdp.Models
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Место рождения")]
-        public string Hometown { get; set; }
+        [Display(Name = "Адрес пользователя")]
+        public string Address { get; set; }
     }
 
     public class ResetPasswordViewModel

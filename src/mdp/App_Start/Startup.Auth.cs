@@ -42,6 +42,12 @@ namespace mdp
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
+            // настройка контекста базы данных товаров и комментариев пользователей
+            app.CreatePerOwinContext<ProductsModel>(ProductsModel.Create);
+
+            // настройка контекста базы данных покупок и заказов
+            app.CreatePerOwinContext<PurchaseModel>(PurchaseModel.Create);
+
             // Включение использования файла cookie, в котором приложение может хранить информацию для пользователя, выполнившего вход,
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
