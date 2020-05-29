@@ -13,7 +13,6 @@ namespace mdp.Models
         // отчество
         public string Patronymic { get; set; }
         public float BonusesAmount { get; set; }
-
         public string Address { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
