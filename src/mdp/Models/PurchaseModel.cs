@@ -14,15 +14,17 @@ namespace mdp.Models
 
     public class Order
     {
-        public Product ProductId { get; set; }
+        public int Id { get; set; }
+        public int ProductId { get; set; }
         public int ProductAmount { get; set; }
     }
 
     public class Purchase
     {
+        public int Id { get; set; }
         // could be an Anonymous one if User isn't registered
-        public ApplicationUser UserId { get; set; }
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        public string UserId { get; set; }
+        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
         public string UserName { get; set; }
         public string UserSurname { get; set; }
         public string PhoneNumber { get; set; }

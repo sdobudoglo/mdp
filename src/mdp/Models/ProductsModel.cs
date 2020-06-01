@@ -47,10 +47,31 @@ namespace mdp.Models
         Fasteners
     }
 
+    public enum ProductColor
+    {
+        White,
+        Black,
+        Green,
+        Yellow,
+        Brown,
+        Blue,
+        Orange,
+        Red,
+        Purple,
+        Pink,
+        Grey
+    }
+
     public class ProductComment
     {
         public int Id { get; set; }
         public string Text { get; set; }
+    }
+
+    public class ProductImage
+    {
+        public int Id { get; set; }
+        public string ImagePath { get; set; }
     }
 
     public class Product
@@ -64,18 +85,16 @@ namespace mdp.Models
         public float Price { get; set; }
         public float Discount { get; set; }
         public string Description { get; set; }
-        public int Color { get; set; }
-        public ICollection<string> Images { get; set; } = new List<string>();
+        public ProductColor Color { get; set; }
+        public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
         public ICollection<ProductComment> Comments { get; set; } = new List<ProductComment>();
-
     }
 
     public class ProductsModel : DbContext
     {
         public ProductsModel()
             : base("DefaultConnection")
-        {
-        }
+        { }
 
         public static ProductsModel Create()
         {
@@ -83,6 +102,7 @@ namespace mdp.Models
         }
 
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Product> Products { get; set; }
     }
 }
