@@ -163,8 +163,8 @@ namespace mdp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Address = model.Address,
-                    PhoneNumber = model.Number, Surname = model.Surname, Patronymic = model.Patronymic, BonusesAmount = 0 };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Address = model.Address, PhoneNumber = model.Number
+                    , Name = model.Name, Surname = model.Surname, Patronymic = model.Patronymic, BonusesAmount = 0 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

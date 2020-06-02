@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -10,6 +9,7 @@ namespace mdp.Models
     // В профиль пользователя можно добавить дополнительные данные, если указать больше свойств для класса ApplicationUser. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+        public string Name { get; set; }
         public string Surname { get; set; }
         // отчество
         public string Patronymic { get; set; }

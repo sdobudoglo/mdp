@@ -95,7 +95,7 @@ namespace mdp.Models
 
         [Required]
         [Display(Name = "Имя пользователя *")]
-        public string UserName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Display(Name = "Фамилия пользователя *")]
