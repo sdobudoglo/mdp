@@ -1,29 +1,98 @@
-﻿<div class="row">
+﻿@using System.Collections.ObjectModel
+@model List<mdp.Models.Product>
+
+<div class="row">
     <div class=" col-lg-2">
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item active">
                 Каталог товаров
             </a>
-            <a href="#" class="list-group-item list-group-item-action">Наборы</a>
-            <a href="#" class="list-group-item list-group-item-action">Контроллеры</a>
-            <a href="#" class="list-group-item list-group-item-action">Модули, шилды</a>
-            <a href="#" class="list-group-item list-group-item-action">Датчики, сенсоры</a>
-            <a href="#" class="list-group-item list-group-item-action">Управление моторами</a>
-            <a href="#" class="list-group-item list-group-item-action">Сервоконтроллеры</a>
-            <a href="#" class="list-group-item list-group-item-action">Коммуникация</a>
-            <a href="#" class="list-group-item list-group-item-action">Дисплеи</a>
-            <a href="#" class="list-group-item list-group-item-action">Компоненты</a>
-            <a href="#" class="list-group-item list-group-item-action">Пробразователи напряжения</a>
-            <a href="#" class="list-group-item list-group-item-action">Источники питания</a>
-            <a href="#" class="list-group-item list-group-item-action">Провода, кабели</a>
-            <a href="#" class="list-group-item list-group-item-action">Электромоторы</a>
-            <a href="#" class="list-group-item list-group-item-action">Сервоприводы</a>
-            <a href="#" class="list-group-item list-group-item-action">Колеса</a>
-            <a href="#" class="list-group-item list-group-item-action">Гусеницы</a>
-            <a href="#" class="list-group-item list-group-item-action">Шаровые опоры</a>
-            <a href="#" class="list-group-item list-group-item-action">Платформы</a>
-            <a href="#" class="list-group-item list-group-item-action">Шасси</a>
-            <a href="#" class="list-group-item list-group-item-action">Крепеж</a>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 0 })">Наборы</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 1 })">Контроллеры</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 2 })">Модули, шилды</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 3 })">Датчики, сенсоры</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 4 })">Управление моторами</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 5 })">Сервоконтроллеры</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 6 })">Коммуникация</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 7 })">Дисплеи</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 8 })">Компоненты</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 9 })">Пробразователи напряжения</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 10 })">Источники питания</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 11 })">Провода, кабели</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 12 })">Электромоторы</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 13 })">Сервоприводы</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 14 })">Колеса</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 15 })">Гусеницы</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 16 })">Шаровые опоры</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 17 })">Платформы</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 18 })">Шасси</a>
+            </div>
+            <div class="list-group-item list-group-item-action">
+                <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 19 })">Крепеж</a>
+            </div>
         </div>
     </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var product in Model)
+        {
+            <tr>
+                <td class="api-name">
+                    <p>@product.Price</p>
+                </td>
+                @*<td class="api-name"><a href="@Url.Action("Api", "Help", new { apiId = product.GetFriendlyId() })">@api.HttpMethod.Method @api.RelativePath</a></td>*@
+                <td class="api-documentation">
+                    @if (product.ProductName != null)
+                    {
+                        <p>@product.ProductName</p>
+                    }
+                    else
+                    {
+                        <p>No documentation available.</p>
+                    }
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <h3><b>Ожидается поступление товара.</b></h3>
+    }
 </div>

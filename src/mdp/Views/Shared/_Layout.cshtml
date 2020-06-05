@@ -19,22 +19,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Магазин робототехники", "Index", "Help", new { area = "HelpPage" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Магазин робототехники", "Starts", "Starts", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Каталог товаров", "Index", "Help", new { area = "HelpPage" }, null)</li>
-
-                    <li>@Html.ActionLink("Информация", "Index", "Help", new { area = "HelpPage" }, null)</li>
-                    <li>@Html.ActionLink("Доставка", "Index", "Help", new { area = "HelpPage" }, null)</li>
-                    <li>@Html.ActionLink("Новости", "Index", "Help", new { area = "HelpPage" }, null)</li>
-                    Б
+                    <li>@Html.ActionLink("Информация", "Index", "Information", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Доставка", "Index", "Delivery", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Новости", "Index", "News", new { area = "" }, null)</li>
 
                     <li>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
+                        @using (Html.BeginForm("Starts", "Starts", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+                        {
+                            <input type="hidden" value="-1" name="ProductCategory" />
+                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" name="SearchText">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-                        </form>
+                        }
                     </li>
                 </ul>
             @Html.Partial("_LoginPartial")
@@ -43,7 +42,6 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        @RenderSection("SPAViews", required: false)
         <hr />
         <footer>
           <div class="opis">

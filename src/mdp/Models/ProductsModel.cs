@@ -7,6 +7,8 @@ namespace mdp.Models
 
     public enum CategoryType
     {
+        //Наборы
+        sets,
         // Контроллеры
         Controllers,
         // Модули, шилды
@@ -88,6 +90,12 @@ namespace mdp.Models
         public ProductColor Color { get; set; }
         public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
         public ICollection<ProductComment> Comments { get; set; } = new List<ProductComment>();
+    }
+
+    public class ProductSearch
+    {
+        public int ProductCategory { get; set; } = -1;
+        public string SearchText { get; set; } = "";
     }
 
     public class ProductsModel : DbContext
