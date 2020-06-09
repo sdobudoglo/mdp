@@ -41,5 +41,15 @@ namespace mdp.Controllers
 
             return View(prods_search);
         }
+
+        public ActionResult ByePrompt(mdp.Models.Product product)
+        {
+            return View(product);
+        }
+
+        public ActionResult ProductDeatails(mdp.Models.Product product)
+        {
+            return View(product);
+        }
     }
 }

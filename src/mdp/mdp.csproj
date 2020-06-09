@@ -330,6 +330,8 @@
     <Content Include="Views\Delivery\Index.cshtml" />
     <Content Include="Views\Information\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Starts\ByePrompt.cshtml" />
+    <Content Include="Views\Starts\ProductDeatails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
