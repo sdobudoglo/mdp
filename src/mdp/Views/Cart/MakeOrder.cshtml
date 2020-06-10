@@ -1,7 +1,62 @@
-﻿
+﻿@model List<mdp.Models.Cart>
 @{
     ViewBag.Title = "MakeOrder";
 }
 
-<h2>MakeOrder</h2>
+<h2>Оформление заказа</h2>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputEmail4">Имя</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Ваше имя">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputPassword4">Фамилия</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Ваша фамилия">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputPassword4">Отчество</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Ваше отчетство">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="inputEmail4">Страна</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Название вашей страны">
+        </div>
+        <div class="form-group col-md-8">
+            <label for="inputPassword4">Город</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Название вашего города">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="inputEmail4">Улица</label>
+                <input type="email" class="form-control" id="inputEmail4" placeholder="Название вашей улицы">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputPassword4">Дом</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="№ дома">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputPassword4">Корпус</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="№ корпуса">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputPassword4">Квартира</label>
+                <input type="password" class="form-control" id="inputPassword4" placeholder="№ квартиры">
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <label class="form-check-label" for="gridCheck">
+                    Запомнить введенные данные
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary">Купить</button>
+        </div>
+    </div>
+</form>
 

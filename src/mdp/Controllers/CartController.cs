@@ -72,7 +72,7 @@ namespace mdp.Controllers
             return View(DBContext.Carts.Where(p => p.CartId == cart_key_value).ToList());
         }
 
-        public ActionResult MakeOrder(List<Cart> carts)
+        public ActionResult MakeOrder()
         {
             return View();
         }
