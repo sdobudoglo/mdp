@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -50,8 +51,11 @@ namespace mdp.Controllers
 
         public ActionResult ProductDeatails(int product_id)
         {
-            var procuct = DBContext.Products.SingleOrDefault(p => p.Id == product_id);
-            return View(procuct);
+            var product = DBContext.Products.Include(a => a.Comments)
+                                            .Include(c => c.Images)
+                                            .SingleOrDefault(p => p.Id == product_id);
+
+            return View(product);
         }
     }
 }

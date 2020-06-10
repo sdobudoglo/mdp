@@ -61,8 +61,25 @@ namespace mdp.Controllers
             return RedirectToAction("Cart");
         }
 
-        public ActionResult RemoveFromCart()
+        public ActionResult RemoveFromCart(int product_id, bool all_amount = false)
         {
+            var cart_key_value = CartKeyValue();
+
+            var cart_item = DBContext.Carts.SingleOrDefault(p => p.ProductId == product_id
+                                                              && p.CartId == cart_key_value);
+            if (cart_item != null)
+            {
+                if (cart_item.Amount == 1 || all_amount)
+                {
+                    DBContext.Carts.Remove(cart_item);
+                } else
+                {
+                    cart_item.Amount--;
+                }
+
+                DBContext.SaveChanges();
+            }
+
             return RedirectToAction("Cart");
         }
 
@@ -79,7 +96,12 @@ namespace mdp.Controllers
 
         private void ClearCart()
         {
-
+            var to_delete = DBContext.Carts.Where(p => p.CartId == CartKeyValue());
+            foreach (var item in to_delete)
+            {
+                DBContext.Carts.Remove(item);
+            }
+            DBContext.SaveChanges();
         }
     }
 }
