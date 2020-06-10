@@ -1,0 +1,20 @@
+﻿@model List<mdp.Models.Cart>
+
+<h2>Корзина товаров</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var product in Model)
+    {
+        <div>Model item</div>
+    }
+
+    <a href="@Url.Action("MakeOrder", "Cart", new { carts = Model })">Оформить заказ</a>
+}
+else
+{
+    <h3><b>Ваша корзина пуста</b></h3>
+}
+
+<a href="@Url.Action("Starts", "Starts", new { })">Продолжить покупки</a></td>
+

@@ -4,9 +4,9 @@
 <div class="row">
     <div class=" col-lg-2">
         <div class="list-group">
-            <a href="#" class="list-group-item list-group-item active">
-                Каталог товаров
-            </a>
+            <div class="list-group-item list-group-item active">
+                <a href="@Url.Action("Starts", "Starts", new {  })"> Каталог товаров </a>
+            </div>
             <div class="list-group-item list-group-item-action">
                 <a href="@Url.Action("Starts", "Starts", new { ProductCategory = 0 })">Наборы</a>
             </div>
@@ -82,10 +82,10 @@
                     <td>"Цена на товар: "@product.Price"р"</td>
                 </tr>
                 <tr>
-                    <td><a href="@Url.Action("ByePrompt", "Starts", new { product = product })">Купить</a></td>
+                    <td><a href="@Url.Action("AddToCart", "Cart", new { product_id = product.Id, product_name = product.ProductName })">Купить</a></td>
                 </tr>
                 <tr>
-                    <td><a href="@Url.Action("ProductDeatails", "Starts", new { product = product })">Подробности</a></td>
+                    <td><a href="@Url.Action("ProductDeatails", "Starts", new { product_id = product.Id })">Подробности</a></td>
                 </tr>
             </table>
         }

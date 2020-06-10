@@ -217,6 +217,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DeliveryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
@@ -240,10 +241,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\mdp-29052020.mdf" />
-    <Content Include="App_Data\mdp-29052020_log.ldf">
-      <DependentUpon>mdp-29052020.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -335,10 +332,16 @@
     <Content Include="Views\Delivery\Index.cshtml" />
     <Content Include="Views\Information\Index.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\Starts\ByePrompt.cshtml" />
     <Content Include="Views\Starts\ProductDeatails.cshtml" />
+    <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Cart\MakeOrder.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\product_images\1\" />
+    <Folder Include="App_Data\product_images\2\" />
+    <Folder Include="App_Data\product_images\3\" />
+    <Folder Include="App_Data\product_images\4\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>

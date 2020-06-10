@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace mdp.Models
 {
@@ -34,6 +35,16 @@ namespace mdp.Models
         public string DelivAddress { get; set; }
     }
 
+    public class Cart
+    {
+        [Key]
+        public int Id { get; set; }
+        public string CartId { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int Amount { get; set; }
+    }
+
     public class PurchaseModel : DbContext
     {
         public PurchaseModel()
@@ -48,5 +59,6 @@ namespace mdp.Models
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Cart> Carts { get; set; }
     }
 }
