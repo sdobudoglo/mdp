@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace mdp.Models
 {
@@ -86,6 +87,7 @@ namespace mdp.Models
         public DateTime DateAdded { get; set;}
         public float Price { get; set; }
         public float Discount { get; set; }
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         public ProductColor Color { get; set; }
         public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();

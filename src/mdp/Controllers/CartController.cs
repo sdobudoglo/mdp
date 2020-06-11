@@ -35,7 +35,7 @@ namespace mdp.Controllers
         }
 
         // GET: Cart
-        public ActionResult AddToCart(int product_id, string product_name)
+        public ActionResult AddToCart(int product_id, string product_name, int amount = 1)
         {
             var cart_key_value = CartKeyValue();
 
@@ -48,13 +48,13 @@ namespace mdp.Controllers
                     CartId = cart_key_value,
                     ProductId = product_id,
                     ProductName = product_name,
-                    Amount = 1
+                    Amount = amount
                 };
                 DBContext.Carts.Add(cart_item);
             }
             else
             {
-                cart_item.Amount++;
+                cart_item.Amount += amount;
             }
             DBContext.SaveChanges();
 
@@ -96,12 +96,31 @@ namespace mdp.Controllers
 
         private void ClearCart()
         {
-            var to_delete = DBContext.Carts.Where(p => p.CartId == CartKeyValue());
+            var cart_key_value = CartKeyValue();
+            var to_delete = DBContext.Carts.Where(p => p.CartId == cart_key_value);
+
             foreach (var item in to_delete)
             {
                 DBContext.Carts.Remove(item);
             }
             DBContext.SaveChanges();
+        }
+
+        [ChildActionOnly]
+        public ActionResult CartSummary()
+        {
+            int count = 0;
+            var cart_key_value = CartKeyValue();
+
+            var carts = DBContext.Carts.Where(p => p.CartId == cart_key_value);
+            foreach (var item in carts)
+            {
+                count += item.Amount;
+            }
+
+            ViewData["CartCount"] = count;
+
+            return PartialView("CartSummary");
         }
     }
 }

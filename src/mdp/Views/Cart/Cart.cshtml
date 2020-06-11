@@ -6,7 +6,57 @@
 {
     foreach (var product in Model)
     {
-        <div>Model item</div>
+        @*<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <label>@product.ProductName</label>
+                @using (Html.BeginForm("AddToCart", "Cart", new { product_id = product.ProductId, product_name = product.ProductName }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+                {
+                <button class="btn btn-secondary" type="submit">
+                    <img src="/Product_images/icons/add_circle-24px.svg">
+                </button>
+                }
+                <label>@product.Amount</label>
+                @using (Html.BeginForm("RemoveFromCart", "Cart", new { product_id = product.ProductId }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+                {
+                <button class="btn btn-secondary" type="submit">
+                    <img src="/Product_images/icons/remove_circle-24px.svg">
+                </button>
+                }
+            </div>*@
+
+        <table>
+            <tr>
+                <label>@product.ProductName</label>
+            </tr>
+            <tr>
+                @using (Html.BeginForm("AddToCart", "Cart", new { product_id = product.ProductId, product_name = product.ProductName }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+                {
+                    <button class="btn btn-secondary" type="submit">
+                        <img src="/Product_images/icons/add_circle-24px.svg">
+                    </button>
+                }
+            </tr>
+            <tr>
+                <label>@product.Amount</label>
+            </tr>
+            <tr>
+                @using (Html.BeginForm("RemoveFromCart", "Cart", new { product_id = product.ProductId }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+                {
+                    <button class="btn btn-secondary" type="submit">
+                        <img src="/Product_images/icons/remove_circle-24px.svg">
+                    </button>
+                }
+            </tr>
+            <tr>
+                @using (Html.BeginForm("RemoveFromCart", "Cart", new { product_id = product.ProductId, all_amount = true }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+                {
+                    <button class="btn btn-secondary" type="submit">
+                        <img src="/Product_images/icons/clear-24px.svg">
+                    </button>
+                }
+            </tr>
+        </table>
+
+        <br />
     }
 
     <a href="@Url.Action("MakeOrder", "Cart")">Оформить заказ</a>

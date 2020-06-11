@@ -35,6 +35,7 @@
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
                         }
                     </li>
+                    <li>@{Html.RenderAction("CartSummary", "Cart");}</li>
                 </ul>
             @Html.Partial("_LoginPartial")
         </div>
