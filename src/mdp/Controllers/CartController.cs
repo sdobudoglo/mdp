@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,14 @@ namespace mdp.Controllers
             get
             {
                 return HttpContext.GetOwinContext().Get<PurchaseModel>();
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
         }
 
@@ -90,6 +99,17 @@ namespace mdp.Controllers
         }
 
         public ActionResult MakeOrder()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                return View(user);
+            }
+
+            return View();
+        }
+
+        public ActionResult ValidateOrder()
         {
             return View();
         }

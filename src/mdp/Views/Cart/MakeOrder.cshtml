@@ -1,62 +1,75 @@
-﻿@model List<mdp.Models.Cart>
+﻿@model mdp.Models.ApplicationUser
 @{
     ViewBag.Title = "MakeOrder";
 }
 
 <h2>Оформление заказа</h2>
-<form>
+
+@using (Html.BeginForm("ValidateOrder", "Cart", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+{
     <div class="form-row">
         <div class="form-group col-md-4">
-            <label for="inputEmail4">Имя</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Ваше имя">
+            <label for="inputName">Имя</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Ваше имя">
         </div>
         <div class="form-group col-md-4">
-            <label for="inputPassword4">Фамилия</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Ваша фамилия">
+            <label for="inputSurname">Фамилия</label>
+            <input type="text" class="form-control" id="inputSurname" placeholder="Ваша фамилия">
         </div>
         <div class="form-group col-md-4">
-            <label for="inputPassword4">Отчество</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Ваше отчетство">
+            <label for="inputPatronymic">Отчество</label>
+            <input type="text" class="form-control" id="inputPatronymic" placeholder="Ваше отчетство">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-4">
-            <label for="inputEmail4">Страна</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Название вашей страны">
+            <label for="inputEmail">Электронная почта</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Ваша электронная почта">
         </div>
         <div class="form-group col-md-8">
-            <label for="inputPassword4">Город</label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Название вашего города">
+            <label for="inputNumber">Ваш телефон</label>
+            <input type="tel" class="form-control" id="inputNumber" placeholder="Ваш телефон">
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-3">
-                <label for="inputEmail4">Улица</label>
-                <input type="email" class="form-control" id="inputEmail4" placeholder="Название вашей улицы">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputPassword4">Дом</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="№ дома">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputPassword4">Корпус</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="№ корпуса">
-            </div>
-            <div class="form-group col-md-3">
-                <label for="inputPassword4">Квартира</label>
-                <input type="password" class="form-control" id="inputPassword4" placeholder="№ квартиры">
-            </div>
+    </div>
+    <h4>Выберите способ доставки</h4>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="delivCurier" name="customRadio" checked="checked" class="custom-control-input">
+        <label class="custom-control-label" for="delivCurier">Курьерская доставка</label>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="delivSelf" name="customRadio" class="custom-control-input">
+        <label class="custom-control-label" for="delivSelf">Самовыавоз</label>
+    </div>
+    <div class="form-row" id="delivAddress">
+        <div class="form-group col-md-12">
+            <label for="inputAddress">Адрес доставки</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Ваш адрес">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Запомнить введенные данные
-                </label>
-            </div>
-            <button type="submit" class="btn btn-primary">Купить</button>
+            <button type="submit" class="btn btn-primary">Продолжить</button>
         </div>
     </div>
-</form>
+}
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#delivCurier").click(function () {
+                $("#delivAddress").show();
+            });
+            $("#delivSelf").click(function () {
+                $("#delivAddress").hide();
+            });
+
+            // setup values from the model
+            var userObj = @Html.Raw(Json.Encode(Model));
+            if (userObj != null) {
+                document.getElementById("inputName").value = userObj.Name;
+            }
+        });
+    </script>
+}
 
