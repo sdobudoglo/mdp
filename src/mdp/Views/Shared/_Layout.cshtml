@@ -31,8 +31,8 @@
                         @using (Html.BeginForm("Starts", "Starts", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
                         {
                             <input type="hidden" value="-1" name="ProductCategory" />
-                            <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск" name="SearchText">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+                            <input class="form-control mr-sm-2" style="margin-top: 8px" type="search" placeholder="Поиск" aria-label="Поиск" name="SearchText">
+                            <button class="btn btn-outline-success my-2 my-sm-0" style="margin-top: 8px" type="submit">Поиск</button>
                         }
                     </li>
                     <li>@{Html.RenderAction("CartSummary", "Cart");}</li>

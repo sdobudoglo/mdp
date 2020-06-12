@@ -1,5 +1,40 @@
 ﻿@model mdp.Models.Product
+    
 
-<h2>ProductDeatails</h2>
+<h2>Иформация о продукте</h2>
 
-<div>@Model.ProductName</div>
+<div class="row">
+    <div class="col-lg-4">
+        <img src=@Model.Images.ElementAt(0).ImagePath alt="foto1"> 
+        </div>
+    <div class="col-lg-8">
+        <h4><b>Название:</b> @Model.ProductName</h4>
+        <h4><b>Цена:</b> @Model.Price р</h4>
+        <h4><b>Производитель:</b> @Model.Vendor</h4>
+        <h4><b>Количество товара на складе:</b> @Model.Amount</h4>
+        <h4><b>Дата добавления товара:</b> @Model.DateAdded</h4>
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Купить
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <input type="text" class="form-control" placeholder="Введите количество" aria-label="Количество" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Купить</a>
+                </div>
+            </div>
+        </div>
+        <h3><b>Описание: </b></h3>
+        <p>
+            @Html.Raw(Model.Description.Replace("\n", "<br />"))
+        </p>
+
+
+
+    </div>
+        
+
+        </div>
+
+
+    

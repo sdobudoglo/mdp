@@ -8,24 +8,24 @@
     {
         <table>
             <tr>
-                <label>@product.ProductName</label>
+                <label><h4>@product.ProductName</h4></label>
             </tr>
             <tr>
                 @using (Html.BeginForm("AddToCart", "Cart", new { product_id = product.ProductId, product_name = product.ProductName }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
                 {
-                    <button class="btn btn-secondary" type="submit">
-                        <img src="/Product_images/icons/add_circle-24px.svg">
+                    <button class="btn btn-secondary" style="margin: 5px"  type="submit">
+                        <img src="/Product_images/icons/add_circle-24px.svg" style="width: 20px"  >
                     </button>
                 }
             </tr>
             <tr>
-                <label>@product.Amount</label>
+                <label><h4>@product.Amount</h4></label>
             </tr>
             <tr>
                 @using (Html.BeginForm("RemoveFromCart", "Cart", new { product_id = product.ProductId }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
                 {
-                    <button class="btn btn-secondary" type="submit">
-                        <img src="/Product_images/icons/remove_circle-24px.svg">
+                    <button class="btn btn-secondary" style="margin-left: 5px" type="submit">
+                        <img src="/Product_images/icons/remove_circle-24px.svg" style="width:20px">
                     </button>
                 }
             </tr>
@@ -33,7 +33,7 @@
                 @using (Html.BeginForm("RemoveFromCart", "Cart", new { product_id = product.ProductId, all_amount = true }, FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
                 {
                     <button class="btn btn-secondary" type="submit">
-                        <img src="/Product_images/icons/clear-24px.svg">
+                        <img src="/Product_images/icons/clear-24px.svg" style="width: 20px">
                     </button>
                 }
             </tr>
@@ -42,12 +42,12 @@
         <br />
     }
 
-    <a href="@Url.Action("MakeOrder", "Cart")">Оформить заказ</a>
+    <a class="btn btn-primary" href="@Url.Action("MakeOrder", "Cart")">Оформить заказ</a>
 }
 else
 {
     <h3><b>Ваша корзина пуста</b></h3>
 }
 
-<a href="@Url.Action("Starts", "Starts", new { })">Продолжить покупки</a></td>
+<a class="btn btn-primary" href="@Url.Action("Starts", "Starts", new { })">Продолжить покупки</a></td>
 
