@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
-using System.Collections.Generic;
+using System.Net.Mail;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +13,8 @@ namespace mdp.Controllers
     public class CartController : Controller
     {
         public const string CartKey = "CartId";
+        public const string SMTPAccountName = "mdp17062020@gmail.com";
+        public const string SMTPAccountPassword = "Dkfglg1969";
 
         public PurchaseModel DBContext
         {
@@ -109,8 +111,81 @@ namespace mdp.Controllers
             return View();
         }
 
-        public ActionResult ValidateOrder()
+        public ActionResult ValidateOrder(OrderViewModel data)
         {
+            var cart_key_value = CartKeyValue();
+            var carts = DBContext.Carts.Where(p => p.CartId == cart_key_value);
+
+            var purchase = new Purchase
+            {
+                UserId = data.UserId,
+                DelivType = data.Delivery,
+                Email = data.Email,
+                PhoneNumber = data.PhoneNumber,
+                UserName = data.Name,
+                UserSurname = data.Surname,
+                DelivAddress = (data.Delivery == DeliveryType.Courier || data.Delivery == DeliveryType.Post) ? data.Address : ""
+            };
+
+            foreach (var cart in carts) {
+                var order = new Order { ProductId = cart.ProductId, ProductAmount = cart.Amount };
+                purchase.Orders.Add(order);
+                DBContext.Orders.Add(order);
+            }
+
+            DBContext.Purchases.Add(purchase);
+            DBContext.SaveChanges();
+
+            // send mails with purchase information for the shop's manager
+            string manager_mail_text = "Поступил заказ номер: " + purchase.Id + "\nНа имя: " + data.Surname + " " + data.Name + " " + data.Patronymic;
+            manager_mail_text += "\nСостав заказа:\n";
+            foreach (var item in carts)
+            {
+                manager_mail_text += item.ProductName + " в количестве " + item.Amount + "\n";
+            }
+            manager_mail_text += "Доставка: ";
+            switch (data.Delivery)
+            {
+                case DeliveryType.Courier:
+                    manager_mail_text += "курьером по адресу:\n" + data.Address;
+                    break;
+                case DeliveryType.Post:
+                    manager_mail_text += "почтой, почтовый индекс:\n" + data.Address;
+                    break;
+                case DeliveryType.Self:
+                    manager_mail_text += "самовывозом из нашего магазина по адресу: \nРашпилевская 142";
+                    break;
+            }
+            manager_mail_text += "\nТелефон для связи: " + data.PhoneNumber;
+            SendEmail(SMTPAccountName, "Заказ в магазине робототехники", manager_mail_text);
+
+            // send mails with purchase information for the user
+            string cust_mail_text = "Здравствуйте " + data.Surname + " " + data.Name + " " + data.Patronymic + "\n\nВаш номер заказа: " + purchase.Id + "\nВы заказали:\n";
+            
+            foreach (var item in carts)
+            {
+                cust_mail_text += item.ProductName + " в количестве " + item.Amount + "\n";
+            }
+            cust_mail_text += "Вы выбрали доставку ";
+            switch (data.Delivery)
+            {
+                case DeliveryType.Courier:
+                    cust_mail_text += "курьером по адресу:\n" + data.Address;
+                    break;
+                case DeliveryType.Post:
+                    cust_mail_text += "почтой, почтовый индекс:\n" + data.Address;
+                    break;
+                case DeliveryType.Self:
+                    cust_mail_text += "самовывозом из нашего магазина по адресу: \nРашпилевская 142";
+                    break;
+            }
+            cust_mail_text += "\nВы указали номер телефона для связи: " + data.PhoneNumber;
+
+            SendEmail(purchase.Email, "Заказ в магазине робототехники", cust_mail_text);
+
+            // clear the carts as far we have stored purchase information to the database
+            ClearCart();
+
             return View();
         }
 
@@ -124,6 +199,33 @@ namespace mdp.Controllers
                 DBContext.Carts.Remove(item);
             }
             DBContext.SaveChanges();
+        }
+
+        private void SendEmail(string email, string subject, string body)
+        {
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress(SMTPAccountName, "Магазин робототехники", System.Text.Encoding.UTF8);
+            mail.Subject = subject;
+            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+            mail.Body = body;
+            mail.BodyEncoding = System.Text.Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.Normal;
+            SmtpClient client = new SmtpClient();
+            client.Credentials = new System.Net.NetworkCredential(SMTPAccountName, SMTPAccountPassword);
+            client.Port = 587;
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true;
+            try
+            {
+                client.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception caught in CreateCopyMessage(): {0}",
+                    ex.ToString());
+            }
         }
 
         [ChildActionOnly]

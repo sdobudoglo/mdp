@@ -1,29 +1,32 @@
 ﻿@model mdp.Models.Product
-    
 
 <h2>Иформация о продукте</h2>
-
 <div class="row">
     <div class="col-lg-4">
-        <img src=@Model.Images.ElementAt(0).ImagePath alt="foto1"> 
-        </div>
+        <img src=@Model.Images.ElementAt(0).ImagePath alt="foto1">
+    </div>
     <div class="col-lg-8">
         <h4><b>Название:</b> @Model.ProductName</h4>
         <h4><b>Цена:</b> @Model.Price р</h4>
         <h4><b>Производитель:</b> @Model.Vendor</h4>
         <h4><b>Количество товара на складе:</b> @Model.Amount</h4>
         <h4><b>Дата добавления товара:</b> @Model.DateAdded</h4>
-        <div class="dropdown">
-            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Купить
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <input type="text" class="form-control" placeholder="Введите количество" aria-label="Количество" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Купить</a>
+        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
+        {
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Купить
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <input type="hidden" value=@Model.Id name="product_id" />
+                    <input type="hidden" value=@Model.ProductName name="product_name" />
+                    <input type="text" class="form-control" placeholder="Введите количество" aria-label="Количество" aria-describedby="basic-addon2" name="amount">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary btn-sm btn-block" type="submit">Купить</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
         <h3><b>Описание: </b></h3>
         <p>
             @Html.Raw(Model.Description.Replace("\n", "<br />"))
@@ -32,9 +35,7 @@
 
 
     </div>
-        
 
-        </div>
+</div>
 
 
-    

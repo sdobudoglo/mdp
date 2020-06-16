@@ -7,19 +7,21 @@
 
 @using (Html.BeginForm("ValidateOrder", "Cart", FormMethod.Post, new { @class = "form row", role = "form" }))
 {
+    <input type="hidden" value=@Model.Id name="UserId" />
+
     <div class="form-row">
        
         <div class="form-group col-md-4">
             <label for="inputName">Имя</label>
-            <input type="text" class="form-control" id="inputName" placeholder="Ваше имя">
+            <input type="text" class="form-control" id="inputName" placeholder="Ваше имя" name="Name">
         </div>
         <div class="form-group col-md-4">
             <label for="inputSurname">Фамилия</label>
-            <input type="text" class="form-control" id="inputSurname" placeholder="Ваша фамилия">
+            <input type="text" class="form-control" id="inputSurname" placeholder="Ваша фамилия" name="Surname">
         </div>
         <div class="form-group col-md-4">
             <label for="inputPatronymic">Отчество</label>
-            <input type="text" class="form-control" id="inputPatronymic" placeholder="Ваше отчетство">
+            <input type="text" class="form-control" id="inputPatronymic" placeholder="Ваше отчетство" name="Patronymic">
         </div>
             
     </div>
@@ -27,11 +29,11 @@
         
         <div class="form-group col-md-4">
             <label for="inputEmail">Электронная почта</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Ваша электронная почта">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Ваша электронная почта" name="Email">
         </div>
         <div class="form-group col-md-8">
             <label for="inputNumber">Ваш телефон</label>
-            <input type="tel" class="form-control" id="inputNumber" placeholder="Ваш телефон">
+            <input type="tel" class="form-control" id="inputNumber" placeholder="Ваш телефон" name="PhoneNumber">
         
             </div>
     </div>
@@ -40,27 +42,27 @@
             <h4>Выберите способ доставки</h4>
         </div>
         <div class="custom-control custom-radio col-lg-12">
-            <input type="radio" id="delivCurier" name="customRadio" checked="checked" class="custom-control-input">
+            <input type="radio" id="delivCurier" name="Delivery" checked="checked" class="custom-control-input" value="Courier">
             <label class="custom-control-label" for="delivCurier">Курьерская доставка</label>
         </div>
         <div class="custom-control custom-radio col-lg-12">
-            <input type="radio" id="delivSelf" name="customRadio" class="custom-control-input">
+            <input type="radio" id="delivSelf" name="Delivery" class="custom-control-input" value="Self">
             <label class="custom-control-label" for="delivSelf">Самовавоз</label>
         </div>
         <div class="custom-control custom-radio col-lg-12">
-            <input type="radio" id="delivPost" name="customRadio" checked="checked" class="custom-control-input">
+            <input type="radio" id="delivPost" name="Delivery"class="custom-control-input" value="Post">
             <label class="custom-control-label" for="delivPost">Доставка почтой</label>
         </div>
         <div class="form-row" id="delivAddress">
             <div class="form-group col-md-12">
                 <label for="inputAddress">Адрес доставки</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Ваш адрес">
+                <input type="text" class="form-control" id="inputAddress" placeholder="Ваш адрес" name="Address">
             </div>
         </div>
         <div class="form-row" id="delivIndex">
             <div class="form-group col-md-12">
-                <label for="inputIndex">Адрес доставки</label>
-                <input type="text" class="form-control" id="inputIndex" placeholder="Ваш адрес">
+                <label for="inputIndex">Почтовый индекс</label>
+                <input type="text" class="form-control" id="inputIndex" placeholder="Почтовый индекс" name="Address">
             </div>
         </div>
     </div>
@@ -75,14 +77,20 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
+            // start position at the Corier delivery
+            $("#delivIndex").hide();
+
             $("#delivCurier").click(function () {
                 $("#delivAddress").show();
+                $("#delivIndex").hide();
             });
             $("#delivPost").click(function () {
-                $("#delivAddress").show();
+                $("#delivAddress").hide();
+                $("#delivIndex").show();
             });
             $("#delivSelf").click(function () {
                 $("#delivAddress").hide();
+                $("#delivIndex").hide();
             });
           
 
@@ -95,8 +103,6 @@
                 document.getElementById("inputEmail").value = userObj.Email;
                 document.getElementById("inputNumber").value = userObj.PhoneNumber;
                 document.getElementById("inputAddress").value = userObj.Address;
-
-
             }
         });
     </script>

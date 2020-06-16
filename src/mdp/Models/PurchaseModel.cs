@@ -10,7 +10,8 @@ namespace mdp.Models
     public enum DeliveryType
     {
         Post,
-        Courier
+        Courier,
+        Self
     }
 
     public class Order
@@ -43,6 +44,18 @@ namespace mdp.Models
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Amount { get; set; }
+    }
+
+    public class OrderViewModel
+    {
+        public string UserId { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Patronymic { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public DeliveryType Delivery { get; set; }
     }
 
     public class PurchaseModel : DbContext
