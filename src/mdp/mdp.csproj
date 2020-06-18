@@ -217,6 +217,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Product_images\1\image1.jpeg" />
+    <Content Include="Product_images\1\image2.jpeg" />
+    <Content Include="Product_images\2\image1.jpeg" />
+    <Content Include="Product_images\2\image2.jpeg" />
+    <Content Include="Product_images\3\image1.jpeg" />
+    <Content Include="Product_images\3\image2.jpeg" />
+    <Content Include="Product_images\4\image1.jpeg" />
+    <Content Include="Product_images\icons\add_circle-24px.svg" />
+    <Content Include="Product_images\icons\clear-24px.svg" />
+    <Content Include="Product_images\icons\remove_circle-24px.svg" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />
     <Content Include="Scripts\app\app.viewmodel.js" />
