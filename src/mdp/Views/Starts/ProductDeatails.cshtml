@@ -13,13 +13,14 @@
         <h4><b>Дата добавления товара:</b> @Model.DateAdded</h4>
         @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0", role = "form" }))
         {
+            @Html.Hidden("product_id", @Model.Id)
+            @Html.Hidden("product_name", @Model.ProductName)
             <div class="dropdown">
                 <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Купить
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <input type="hidden" value=@Model.Id name="product_id" />
-                    <input type="hidden" value=@Model.ProductName name="product_name" />
+
                     <input type="text" class="form-control" placeholder="Введите количество" aria-label="Количество" aria-describedby="basic-addon2" name="amount">
                     <div class="input-group-append">
                         <button class="btn btn-primary btn-sm btn-block" type="submit">Купить</button>

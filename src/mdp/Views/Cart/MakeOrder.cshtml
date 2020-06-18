@@ -7,7 +7,10 @@
 
 @using (Html.BeginForm("ValidateOrder", "Cart", FormMethod.Post, new { @class = "form row", role = "form" }))
 {
-    <input type="hidden" value=@Model.Id name="UserId" />
+    if (Request.IsAuthenticated)
+    {
+        <input type="hidden" value=@Model.Id name="UserId" />
+    }
 
     <div class="form-row">
        
@@ -62,7 +65,7 @@
         <div class="form-row" id="delivIndex">
             <div class="form-group col-md-12">
                 <label for="inputIndex">Почтовый индекс</label>
-                <input type="text" class="form-control" id="inputIndex" placeholder="Почтовый индекс" name="Address">
+                <input type="text" class="form-control" id="inputIndex" placeholder="Почтовый индекс" name="PostIndex">
             </div>
         </div>
     </div>
@@ -92,7 +95,7 @@
                 $("#delivAddress").hide();
                 $("#delivIndex").hide();
             });
-          
+
 
             // setup values from the model
             var userObj = @Html.Raw(Json.Encode(Model));

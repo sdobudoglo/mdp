@@ -28,7 +28,8 @@ namespace mdp.Controllers
                 var prods_category =
                     DBContext.Products.Include(a => a.Comments)
                                       .Include(c => c.Images)
-                                      .Where(p => p.CategoryId == (CategoryType)obj.ProductCategory).ToList();
+                                      .Where(p => p.CategoryId == (CategoryType)obj.ProductCategory
+                                             && p.Amount > 0).ToList();
 
                 return View(prods_category);
             }
@@ -38,6 +39,7 @@ namespace mdp.Controllers
 
                 var prods_newest = DBContext.Products.Include(a => a.Comments)
                                                      .Include(c => c.Images)
+                                                     .Where (p => p.Amount > 0)
                                                      .OrderByDescending(p => p.DateAdded)
                                                      .Take(10).ToList();
 
@@ -47,7 +49,8 @@ namespace mdp.Controllers
             // perforn search by text
             var prods_search = DBContext.Products.Include(a => a.Comments)
                                                      .Include(c => c.Images)
-                                                     .Where(p => p.ProductName.Contains(obj.SearchText) || p.Description.Contains(obj.SearchText))
+                                                     .Where(p => (p.ProductName.Contains(obj.SearchText) || p.Description.Contains(obj.SearchText))
+                                                            && p.Amount > 0)
                                                      .OrderByDescending(p => p.DateAdded).ToList();
 
             return View(prods_search);

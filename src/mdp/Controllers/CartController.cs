@@ -24,6 +24,14 @@ namespace mdp.Controllers
             }
         }
 
+        public ProductsModel DBProductsContext
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Get<ProductsModel>();
+            }
+        }
+
         public ApplicationUserManager UserManager
         {
             get
@@ -123,18 +131,30 @@ namespace mdp.Controllers
                 Email = data.Email,
                 PhoneNumber = data.PhoneNumber,
                 UserName = data.Name,
-                UserSurname = data.Surname,
-                DelivAddress = (data.Delivery == DeliveryType.Courier || data.Delivery == DeliveryType.Post) ? data.Address : ""
+                UserSurname = data.Surname
             };
+
+            if (data.Delivery == DeliveryType.Courier)
+                purchase.DelivAddress = data.Address;
+            else if (data.Delivery == DeliveryType.Post)
+                purchase.DelivAddress = data.PostIndex;
 
             foreach (var cart in carts) {
                 var order = new Order { ProductId = cart.ProductId, ProductAmount = cart.Amount };
                 purchase.Orders.Add(order);
                 DBContext.Orders.Add(order);
+
+                // decrease available product amount
+                var product = DBProductsContext.Products.SingleOrDefault(p => p.Id == cart.ProductId);
+                if (product != null)
+                {
+                    product.Amount -= cart.Amount;
+                }
             }
 
             DBContext.Purchases.Add(purchase);
             DBContext.SaveChanges();
+            DBProductsContext.SaveChanges();
 
             // send mails with purchase information for the shop's manager
             string manager_mail_text = "Поступил заказ номер: " + purchase.Id + "\nНа имя: " + data.Surname + " " + data.Name + " " + data.Patronymic;
