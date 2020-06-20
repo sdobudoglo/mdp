@@ -41,7 +41,7 @@ namespace mdp.Controllers
                                                      .Include(c => c.Images)
                                                      .Where (p => p.Amount > 0)
                                                      .OrderByDescending(p => p.DateAdded)
-                                                     .Take(10).ToList();
+                                                     .Take(5).ToList();
 
                 return View(prods_newest);
             }
